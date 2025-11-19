@@ -258,20 +258,18 @@ ParseCsvData(string filePath)
         {
             try
             {
-                var data = new[]
-                {
+                var data = 
                     new
                     {
                         CurveId = curveId,
                         x_vals = xVals,
                         y_vals = yVals
-                    }
-                };
+                    };
 
                 string jsonFileName = $"{curveId}_{DateTime.Now:yyyyMMddHHmmss}.json";
                 string jsonFilePath = Path.Combine(outputFolder, jsonFileName);
 
-                System.IO.File.WriteAllText(jsonFilePath, JsonConvert.SerializeObject(data, Newtonsoft.Json.Formatting.Indented));
+                System.IO.File.WriteAllText(jsonFilePath, JsonConvert.SerializeObject(data, Newtonsoft.Json.Formatting.None));
                 LogHelper.WriteLog($"INFO: 文件已保存到: {jsonFilePath}");
             }
             catch (Exception ex)
